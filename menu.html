@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
+  <style>
+    ul {
+      display: none;
+    }
+
+    #menu {
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    .icon {
+      cursor: pointer;
+    }
+
+    .red {
+      background: red;
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="menu">
+  </ul>
+</body>
+<script>
+  $(function () {
+    var menuArray = [
+      {
+        menus: [
+          {
+            menuid: "99B1C9FADE34488281443EE94FF64719",
+            icon: "icon-module",
+            menuname: "模块操作管理",
+            url: "#",
+            menus: [
+              {
+                menuid: "99B1C9FADE34488281443EE94FF64719A",
+                icon: "icon-module",
+                menuname: "模块一管理",
+                url: "#",
+
+              },
+              {
+                menuid: "99B1C9FADE34488281443EE94FF64719B",
+                icon: "icon-module",
+                menuname: "模块二管理",
+                url: "#",
+              }
+            ]
+          },
+          {
+            menus: null,
+            menuid: "C8EF4E9BF6B245A68C9B87BAA2CEFD74",
+            icon: "icon-role",
+            menuname: "角色管理",
+            url: "#",
+          }
+        ],
+        menuid: "F17E3A1C73BE4F8EA92A9D812555B05F",
+        icon: "icon-system-manage",
+        menuname: "系统管理",
+        url: "#",
+      },
+      {
+        menus: [
+          {
+            menus: null,
+            menuid: "0138223a018143019cc534a87134d422",
+            icon: "icon-respect",
+            menuname: "预检分诊",
+            url: "#",
+          },
+          {
+            menus: null,
+            menuid: "942be604fb1248d9854163476c26e681",
+            icon: "icon-emergency-record",
+            menuname: "患者服务",
+            url: "#",
+          },
+        ],
+        menuid: "09690eaf903d401e979e31efd932bbe1",
+        icon: "icon-nurse-station",
+        menuname: "预检分诊台",
+        url: "#",
+      },
+      {
+        menus: [
+          {
+            menus: null,
+            menuid: "747cff49d5564d46a0be0f6092f58304",
+            icon: "icon-respect",
+            menuname: "留抢患者登记",
+            url: "#",
+          }
+        ],
+        menuid: "029e7c384e43465aaf9306f75ba6dbf6",
+        ico: "icon-qjsgl",
+        menuname: "留抢留观室",
+        url: "#",
+      }
+    ];
+
+    function initMenu(menuArr, parentNode) {
+      $.each(menuArr, function (index, item) {
+        if (!item.menus || !item.menus.length) {
+          parentNode.append('<li><a href=' + item.url + '>' + item.menuname + '</a></li>');
+        } else {
+          var newNode = '<li><span class="title"><a href=' + item.url + '>' + item.menuname + '</a><span class="icon">+</span></span><ul id= ' + item.menuid + '></ul></li>';
+          parentNode.append(newNode);
+          initMenu(item.menus, $("#" + item.menuid));
+        }
+      })
+    }
+    initMenu(menuArray, $('#menu'));
+    $(".title").click(function () {
+      $(this).parent().find('ul').eq(0).toggle();
+      $(this).toggleClass("red");
+    })
+  })
+</script>
+
+</html>
