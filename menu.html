@@ -51,7 +51,20 @@
                 icon: "icon-module",
                 menuname: "模块一管理",
                 url: "#",
-
+                menus: [
+                  {
+                    menuid: "99B1C9FADE34488281443EE94FF64719AA",
+                    icon: "icon-module",
+                    menuname: "模块一A",
+                    url: "#"
+                  },
+                  {
+                    menuid: "99B1C9FADE34488281443EE94FF64719AB",
+                    icon: "icon-module",
+                    menuname: "模块一B",
+                    url: "#"
+                  }
+                ]
               },
               {
                 menuid: "99B1C9FADE34488281443EE94FF64719B",
@@ -62,11 +75,24 @@
             ]
           },
           {
-            menus: null,
             menuid: "C8EF4E9BF6B245A68C9B87BAA2CEFD74",
             icon: "icon-role",
             menuname: "角色管理",
             url: "#",
+            menus: [
+              {
+                menuid: "C8EF4E9BF6B245A68C9B87BAA2CEFD74A",
+                icon: "icon-module",
+                menuname: "角色一",
+                url: "#",
+              },
+              {
+                menuid: "C8EF4E9BF6B245A68C9B87BAA2CEFD74B",
+                icon: "icon-module",
+                menuname: "角色二",
+                url: "#",
+              }
+            ]
           }
         ],
         menuid: "F17E3A1C73BE4F8EA92A9D812555B05F",
@@ -113,6 +139,8 @@
       }
     ];
 
+    initMenu(menuArray, $('#menu'));
+
     function initMenu(menuArr, parentNode) {
       $.each(menuArr, function (index, item) {
         if (!item.menus || !item.menus.length) {
@@ -124,10 +152,16 @@
         }
       })
     }
-    initMenu(menuArray, $('#menu'));
     $(".title").click(function () {
-      $(this).parent().find('ul').eq(0).toggle();
-      $(this).toggleClass("red");
+      var isShow = $(this).parent().find('ul').eq(0).css('display') == 'none' ? false : true;
+      if (!isShow) {
+        $(this).parent().find('ul').eq(0).css('display', 'block');
+        $(this).parent().siblings().children('ul').hide()
+
+      } else {
+        $(this).parent().find('ul').eq(0).css('display', 'none');
+      }
+      // $(this).toggleClass("red");
     })
   })
 </script>
